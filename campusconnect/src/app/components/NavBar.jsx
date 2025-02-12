@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Bell, PlusCircleIcon } from "lucide-react";
+import { Bell, PlusCircleIcon, UserCircleIcon } from "lucide-react";
 
 const NavBar = ()=>{
     return(
@@ -19,7 +19,7 @@ const NavBar = ()=>{
                         </div>
                     </li>
                     <li className='mx-4'>
-                        <Link href='/Event'>profile</Link>
+                        <Link href='/Event'><UserCircleIcon size={24} className='text-white'/></Link>
                     </li>
                     <li className='mx-4'>
                         <Link href='/create-event'>

@@ -16,6 +16,7 @@ const Home = () => {
   const [adminMessages, setAdminMessages] = useState([
     "Welcome to the event platform!",
     "The next major event starts tomorrow.",
+    "The next major event starts next week.",
   ]);
   const calendarRef = useRef(null);
 
