@@ -1,0 +1,14 @@
+.dashboardContainer {
+    display: flex;
+    min-height: 100vh;
+    background-color: #ffffff;
+    color: #e0e0e0;
+  }
+  
+  .dashboardContent {
+    flex-grow: 1;
+    padding: 2rem; /* Increase padding */
+    margin: 1rem; /* Add margin */
+    transition: margin-left 0.3s ease;
+    height: 100%;
+  }

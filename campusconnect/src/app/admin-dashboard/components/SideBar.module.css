@@ -1,0 +1,123 @@
+/* src/components/Sidebar.module.css */
+.sidebar {
+    width: 280px; /* Adjust width as needed */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Or adjust based on your layout */
+    overflow-y: auto; /* In case the content overflows */
+  }
+  
+  .dark {
+    background-color: #1E1E1E; /* Dark theme background */
+    color: #F7F7F7; /* Dark theme text */
+  }
+  
+  .light {
+    background-color: #F7F7F7; /* Light theme background */
+    color: #333; /* Light theme text */
+  }
+  
+  .userSection {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc; /* Add a separator */
+    margin-bottom: 20px;
+  }
+  
+  .dark .userSection {
+    border-bottom-color: #444;
+  }
+  
+  .light .userSection {
+    border-bottom-color: #ccc;
+  }
+  
+  .userIcon {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .userInfo {
+    flex-grow: 1;
+  }
+  
+  .userName {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .userSummary {
+    font-size: 0.9em;
+    color: #777;
+  }
+  
+  .dark .userSummary {
+    color: #bbb;
+  }
+  
+  .navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navItem {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .navItem:hover {
+    background-color: #3333331a; /* Light hover effect */
+  }
+  
+  .dark .navItem:hover {
+    background-color: #ffffff1a; /* Dark hover effect */
+  }
+  
+  .navIcon {
+    font-size: 20px;
+    margin-right: 15px;
+  }
+  
+  .navLabel {
+    flex-grow: 1;
+  }
+  
+  .valoionSection {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f0f0f0; /* Light background for this section */
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .dark .valoionSection {
+    background-color: #333; /* Dark background for this section */
+  }
+  
+  .valoionSection h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+  }
+  
+  .valoionSection p {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #555;
+  }
+  
+  .dark .valoionSection p {
+    color: #ccc;
+  }
+  
+  .valoionImage {
+    margin-top: 10px;
+  }

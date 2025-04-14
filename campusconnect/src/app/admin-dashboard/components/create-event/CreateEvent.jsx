@@ -1,40 +1,50 @@
-"use client"
-import { useState, useEffect } from "react";
+"use client";
+import { useState } from "react";
+import Loader from '../../../components/Loader';
 
-const CreateEvent =()=>{
+const CreateEvent = () => {
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         date: "",
         location: "",
         category: "",
-    })
+    });
+    const [isLoading, setIsLoading] = useState(false);
 
-    const handleChange = (e)=>{
-        setFormData({...formData, [e.target.name]: e.target.value});
-    }
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-    const handleSubmit = async(e)=>{
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
 
-        console.log("Form Data:", formData);
+        console.log(formData);
 
-        const response = await fetch("/api/events", {
-            method: "POST",
-            headers: {"Context-Type": "application/json"},
-            body: JSON.stringify(formData),
-        });
-        if (response.ok) alert("Event created Successfully");
+        try {
+            const response = await fetch("/api/events", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
 
-        const data = await response.json();
-        if (response.ok) {
-            alert(`Event created succesfully! ID: ${data.id}`);
-            setFormData({name: "", description: "", date: "", location: "", category: ""})
-        }else{
-            alert(`Error: ${data.error}`)
+            const data = await response.json();
+
+            if (response.ok) {
+                alert(`Event created successfully! ID: ${data.id}`);
+                setFormData({ name: "", description: "", date: "", location: "", category: "" }); // Only here
+            } else {
+                alert(`Error: ${data.error}`);
+            }
+        } catch (error) {
+            alert(`Network error: ${error.message}`);
+        } finally {
+            setIsLoading(false);
         }
     };
-    return(
+
+    return (
         <div className="flex flex-col justify-center items-center w-full h-screen">
             <div className="flex justify-center items-center flex-col w-2/4 bg-white p-5 rounded-2xl shadow-xl">
                 <h1 className="text-2xl text-green-800 font-bold">Tell Us About an Event</h1>
@@ -65,21 +75,24 @@ const CreateEvent =()=>{
                         onChange={handleChange}
                         className="border p-2 w-full h-14 rounded-lg text-green-950"
                     />
-                    <select 
+                    <select
                         name="category"
                         value={formData.category}
                         onChange={handleChange}
                         className="border p-2 w-full h-14 rounded-lg text-gray-500"
-                        >
-                            <option value="">Select a category</option>
-                            <option value="academy">Academy</option>
-                            <option value="sports">Sports</option>
-                            <option value="cultural">Cultural</option>
-                        </select> <br />
-                        <button type="submit" className="bg-green-800 py-2.5 text-white px-8 rounded-lg">Submit</button>
+                    >
+                        <option value="">Select a category</option>
+                        <option value="academy">Academy</option>
+                        <option value="sports">Sports</option>
+                        <option value="cultural">Cultural</option>
+                    </select> <br />
+                    <button type="submit" className="bg-green-800 py-2.5 text-white px-8 rounded-lg">
+                        {isLoading ? <Loader /> : "Submit"}
+                    </button>
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
+
 export default CreateEvent;

@@ -5,11 +5,11 @@ import { FaGoogle, FaApple } from 'react-icons/fa';
 import { auth, googleProvider } from "@/app/Firebase/firebase";
 import { signInWithPopup, OAuthProvider } from "firebase/auth";
 import { useRouter } from 'next/navigation';
-import './styles/signin.css';
+import '../styles/signin.css';
 import { useDispatch } from 'react-redux';
 import { login } from '@/lib/features/authSlice'; // Import login action
 
-const Login = () => {
+const adminLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -22,7 +22,7 @@ const Login = () => {
         setLoading(true); // Set loading to true
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            router.push('/student-dashboard');
+            router.push('/admin-dashboard');
         } catch (err) {
             setError(err.message);
         } finally {
@@ -40,7 +40,7 @@ const Login = () => {
             displayName: user.displayName,
             photoURL: user.photoURL,
           }));
-          router.push('/student-dashboard');
+          router.push('/admin-dashboard');
         } catch (err) {
           setError(err.message);
         }
@@ -57,7 +57,7 @@ const Login = () => {
             displayName: user.displayName,
             photoURL: user.photoURL,
           }));
-          router.push('/student-dashboard');
+          router.push('/admin-dashboard');
         } catch (err) {
           setError(err.message);
         }
@@ -71,7 +71,7 @@ const Login = () => {
             <div className="container">
                 <div className="signin-form">
                   <h1>Welcome Back!</h1>
-                  <p className="subtitle">Sign in to your account</p>
+                  <p className="subtitle">Sign in to your Admin account</p>
 
                   <form onSubmit={handleEmailSignIn} id="signInForm">
                     {error && <p className="error-message">{error}</p>}
@@ -125,10 +125,10 @@ const Login = () => {
                   {error && <p className="error-message">{error}</p>}
 
                   <p className="signup-link">
-                    Don't have an account? <a href="/signup" id="signUpLink">Sign up here</a>
+                    Don't have an account? <a href="/admin-signup" id="signUpLink">Sign up here</a>
                   </p>
                   <p className="signup-link">
-                    Are you an admin? <a href="/admin-login" id="signUpLink">Login here</a>
+                    Are you a student? <a href="/" id="signUpLink">Login here</a>
                   </p>
                 </div>
             </div>
@@ -137,4 +137,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default adminLogin
